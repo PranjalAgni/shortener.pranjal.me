@@ -10,18 +10,18 @@
 
 <body>
   <header>
-    <img class="logo" src="assets/logo.svg">
+    <img class="logo" src="/assets/logo.svg">
   </header>
   <main id="app">
-    <form class="form" action="" autocomplete="off">
+    <form class="form" action="" autocomplete="off" @submit.prevent="">
       <input autocomplete="off" name="hidden" type="text" style="display:none;">
       <input type="text" class="input" name="url" id="url" placeholder="enter a url">
       <input type="text" class="input" name="code" id="code" placeholder="enter a code">
       <button type="submit" class="create">Create </button>
-
     </form>
   </main>
   <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <script src="/app.js"></script>
 </body>
 
 </html>

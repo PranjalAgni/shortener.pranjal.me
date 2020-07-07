@@ -4,10 +4,28 @@
   box-sizing: content-box;
 }
 
+
 html,
 body {
   height: 100%;
   font-family: 'Poppins', sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+  animation: Gradient 15s ease infinite;
+  -webkit-animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body {
@@ -24,8 +42,9 @@ header {
   margin-bottom: 3rem;
 }
 
+
 .logo {
-  max-width: 40%;
+  max-width: 50%;
   image-rendering: crisp-edges;
 }
 
@@ -45,12 +64,12 @@ header {
   padding-bottom: 1rem;
   background: none;
   border: none;
-  color: #FFFFFF;
-  border-bottom: 2px solid #FFFFFF;
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
   text-align: center;
   font-size: 1.25rem;
   transition: border-bottom-color 0.3 ease-in-out;
-  caret-color: #00B0FF;
+  caret-color: #00b0ff;
   -webkit-transition: border-bottom-color 0.3 ease-in-out;
   -moz-transition: border-bottom-color 0.3 ease-in-out;
   -ms-transition: border-bottom-color 0.3 ease-in-out;
@@ -58,12 +77,12 @@ header {
 }
 
 .input:focus {
-  border-bottom-color: #00B0FF;
+  border-bottom-color: #00b0ff;
   outline: none;
 }
 
 .input::placeholder {
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 0.7;
   font-weight: 540;
 }
@@ -74,9 +93,9 @@ header {
   font: inherit;
   font-size: 1.15rem;
   color: #262626;
-  background-color: #00B0FF;
+  background-color: #00b0ff;
   padding: 0.75rem 1.25rem;
-  box-shadow: 3px 3px 0 0 #FFFFFF;
+  box-shadow: 3px 3px 0 0 #ffffff;
   transition: box-shadow 0.3s ease-in-out;
   -webkit-transition: box-shadow 0.3s ease-in-out;
   -moz-transition: box-shadow 0.3s ease-in-out;
@@ -84,8 +103,17 @@ header {
   -o-transition: box-shadow 0.3s ease-in-out;
 }
 
-
-
 .create:hover {
-  box-shadow: 0 0 0 0 #FFFFFF;
+  box-shadow: 0 0 0 0 #ffffff;
+}
+
+.heart {
+  color: #e25555;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    max-width: 80%;
+    image-rendering: crisp-edges;
+  }
 }

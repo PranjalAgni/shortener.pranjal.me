@@ -7,11 +7,14 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.23.2",
-    "morgan": "^1.10.0"
+    "mongoose": "^5.9.26",
+    "morgan": "^1.10.0",
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
     "nodemon": "^2.0.4"
   },
   "scripts": {

@@ -1,13 +1,19 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
-const { notFound, errorHandler } = require("./middleware");
+const db = require("./utils/db");
 
-require("dotenv").config();
+const { notFound, errorHandler, authentication } = require("./middleware");
+
+// Connecting to MongoDB
+db.connectDB();
 
 const app = express();
+
+// If we are behind some reverse proxy like Nginx then we can trust this
 app.enable("trust proxy");
 
 app.use(helmet());
@@ -19,6 +25,14 @@ app.use(express.static(path.join(__dirname, "../", "public")));
 // to serve app.js which is linked in index.html file
 app.get("/app.js", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../", "public/app.js"));
+});
+
+app.use(authentication);
+
+app.post("/create/url", async (req, res, next) => {
+  res.status(200).json({
+    message: "Authenticated 🔐",
+  });
 });
 
 app.use(notFound);

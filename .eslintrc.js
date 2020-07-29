@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ["google"],
+  extends: ["google", "prettier"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -15,5 +15,6 @@ module.exports = {
   rules: {
     "object-curly-spacing": "off",
     "quotes": ["error", "double", { allowTemplateLiterals: true }],
+    "indent": ["error", 2],
   },
 };

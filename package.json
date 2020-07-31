@@ -9,6 +9,7 @@
     "helmet": "^3.23.2",
     "mongoose": "^5.9.26",
     "morgan": "^1.10.0",
+    "nanoid": "^3.1.12",
     "yup": "^0.29.2"
   },
   "devDependencies": {

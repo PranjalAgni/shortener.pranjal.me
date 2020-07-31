@@ -3,10 +3,11 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
+const { nanoid } = require("nanoid");
 
 const db = require("./utils/db");
 
-const { notFound, errorHandler, authentication } = require("./middleware");
+const { notFound, errorHandler, authorization } = require("./middleware");
 
 // Connecting to MongoDB
 db.connectDB();
@@ -27,11 +28,24 @@ app.get("/app.js", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../", "public/app.js"));
 });
 
-app.use(authentication);
+app.use(authorization);
 
 app.post("/create/url", async (req, res, next) => {
+  const { targetUrl, shortId } = req.body;
+  let shortCode = shortId;
+
+  if (!shortCode) {
+    shortCode = nanoid();
+  }
+
+  // Keeping short codes case insensitive
+  shortCode = shortCode.toLowerCase();
+  console.log(targetUrl, shortCode);
+
   res.status(200).json({
     message: "Authenticated 🔐",
+    targetUrl,
+    shortCode,
   });
 });
 

@@ -1,6 +1,6 @@
 const path = require("path");
 
-const authentication = (req, res, next) => {
+const authorization = (req, res, next) => {
   if (
     process.env.NODE_ENV === "development" ||
     req.headers["X-API-KEY"] === "token"
@@ -29,5 +29,5 @@ const errorHandler = (error, req, res, next) => {
 module.exports = {
   notFound,
   errorHandler,
-  authentication,
+  authorization,
 };

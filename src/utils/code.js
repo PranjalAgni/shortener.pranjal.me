@@ -15,7 +15,10 @@ const checkIfCodeExists = async (shortCode) => {
 const getUrlForGivenCode = async (shortCode) => {
   const targetDocument = await Urls.findOne({ code: shortCode }).lean();
   if (!targetDocument) return null;
-  console.log(targetDocument);
+
+  const currentClickCount = targetDocument.clicks;
+  const documentId = targetDocument._id;
+  await Urls.updateOne({ _id: documentId }, { clicks: currentClickCount + 1 });
   return targetDocument.url;
 };
 

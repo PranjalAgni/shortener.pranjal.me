@@ -2,6 +2,14 @@
   "name": "urls-shortener",
   "version": "1.0.0",
   "description": "a url shortener app ",
+  "keywords": [
+    "javascript",
+    "vue",
+    "nodejs",
+    "mongodb",
+    "eslint",
+    "prettier"
+  ],
   "main": "server.js",
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -22,7 +30,8 @@
   },
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "lint": "eslint ."
   },
   "author": "Pranjal Agnihotri",
   "license": "ISC"

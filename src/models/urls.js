@@ -5,7 +5,6 @@ const UrlsSchema = new mongoose.Schema(
     url: {
       type: String,
       required: true,
-      unique: true,
     },
     code: {
       type: String,

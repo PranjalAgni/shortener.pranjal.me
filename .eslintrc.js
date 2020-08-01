@@ -16,5 +16,6 @@ module.exports = {
     "object-curly-spacing": "off",
     "quotes": ["error", "double", { allowTemplateLiterals: true }],
     "indent": ["error", 2],
+    "new-cap": "off",
   },
 };

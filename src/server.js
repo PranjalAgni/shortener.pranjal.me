@@ -35,5 +35,5 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(3000, () => {
-  console.log(`Server running at port 3000`);
+  console.log(`Server running at port 3000 in ${process.env.NODE_ENV} mode`);
 });

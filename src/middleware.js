@@ -3,7 +3,7 @@ const path = require("path");
 const authorization = (req, res, next) => {
   if (
     process.env.NODE_ENV === "development" ||
-    req.headers["X-API-KEY"] === "token"
+    req.headers["x-api-key"] === "token"
   ) {
     next();
   } else {

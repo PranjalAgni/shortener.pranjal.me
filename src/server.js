@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const db = require("./utils/db");
 const { notFound, errorHandler, authorization } = require("./middleware");
 const urls = require("./api/urls");
+const redirect = require("./api/redirect");
 
 // Connecting to MongoDB
 db.connectDB();
@@ -30,6 +31,7 @@ app.get("/app.js", (req, res) => {
 app.use(authorization);
 
 app.use("/api/url", urls);
+app.use("/", redirect);
 
 app.use(notFound);
 app.use(errorHandler);

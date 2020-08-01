@@ -12,6 +12,13 @@ const checkIfCodeExists = async (shortCode) => {
   return false;
 };
 
+const getUrlForGivenCode = async (shortCode) => {
+  const targetDocument = await Urls.findOne({ code: shortCode }).lean();
+  if (!targetDocument) return null;
+  console.log(targetDocument);
+  return targetDocument.url;
+};
+
 const retryAndGenerateUniqueCode = async () => {
   let retry = 2;
   let shortCode = null;
@@ -38,4 +45,5 @@ module.exports = {
   generateShortCode,
   checkIfCodeExists,
   retryAndGenerateUniqueCode,
+  getUrlForGivenCode,
 };

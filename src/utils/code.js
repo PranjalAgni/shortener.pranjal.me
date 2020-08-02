@@ -1,19 +1,32 @@
 const { nanoid } = require("nanoid");
 
 const Urls = require("../models/urls");
+const cachingInstance = require("../cache/index").getInstance();
 
 const generateShortCode = (length = 5) => {
   return nanoid(length);
 };
 
+const checkCodeInCache = (shortCode) => {
+  const urlDocument = cachingInstance.get(shortCode);
+  return urlDocument;
+};
+
 const checkIfCodeExists = async (shortCode) => {
-  const isCodePresent = await Urls.findOne({ code: shortCode }).lean();
+  let isCodePresent = checkCodeInCache(shortCode);
+  if (!isCodePresent) {
+    isCodePresent = await Urls.findOne({ code: shortCode }).lean();
+  }
   if (isCodePresent) return true;
   return false;
 };
 
 const getUrlForGivenCode = async (shortCode) => {
-  const targetDocument = await Urls.findOne({ code: shortCode }).lean();
+  let targetDocument = checkCodeInCache(shortCode);
+  if (!targetDocument) {
+    targetDocument = await Urls.findOne({ code: shortCode }).lean();
+  }
+
   if (!targetDocument) return null;
 
   const currentClickCount = targetDocument.clicks;
@@ -28,7 +41,10 @@ const retryAndGenerateUniqueCode = async () => {
   let gotUniqueCode = false;
   while (retry > 0) {
     shortCode = generateShortCode();
-    const isCodePresent = await checkIfCodeExists(shortCode);
+    let isCodePresent = checkCodeInCache(shortCode);
+    if (!isCodePresent) {
+      isCodePresent = await checkIfCodeExists(shortCode);
+    }
     if (!isCodePresent) {
       gotUniqueCode = true;
       break;

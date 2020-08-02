@@ -2,6 +2,7 @@ const { Router } = require("express");
 const rateLimit = require("express-rate-limit");
 const slowDown = require("express-slow-down");
 
+const cachingInstance = require("../cache/index").getInstance();
 const Urls = require("../models/urls");
 const { formatResponse } = require("../utils/responseFormatter");
 const { createUrlRequestBodySchema } = require("../schema/index");
@@ -66,6 +67,8 @@ router.post(
 
       const urlShortened = new Urls(newUrl);
       const createdEntry = await urlShortened.save();
+      cachingInstance.set(shortCode, createdEntry);
+
       formatResponse(res, createdEntry);
     } catch (error) {
       if (error.name === "ValidationError") res.status(422);

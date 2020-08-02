@@ -8,7 +8,10 @@ router.get("/:id", async (req, res, next) => {
   try {
     const codeId = req.params.id;
     const targetUrl = await getUrlForGivenCode(codeId);
-    if (!targetUrl) formatResponse(res, "Invalid code provided");
+    if (!targetUrl) {
+      formatResponse(res, "Invalid code provided");
+      return;
+    }
     res.redirect(targetUrl);
   } catch (error) {
     next(error);

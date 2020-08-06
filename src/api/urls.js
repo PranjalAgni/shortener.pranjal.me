@@ -12,19 +12,20 @@ const {
   retryAndGenerateUniqueCode,
 } = require("../utils/code");
 const { asyncHandler } = require("../middleware");
+const { SPEED_LIMITER, RATE_LIMITER } = require("../utils/constants");
 
 const router = Router();
 
 const shortenUrlRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  message: "Too many URL created from this IP.",
+  windowMs: RATE_LIMITER.INTERVAL_IN_MINUTES * 60 * 1000,
+  max: RATE_LIMITER.MAX_REQUEST,
+  message: RATE_LIMITER.MESSAGE,
 });
 
 const shortenUrlSpeedLimiter = slowDown({
-  windowMs: 15 * 60 * 1000,
-  delayAfter: 2,
-  delayMs: 500,
+  windowMs: SPEED_LIMITER.INTERVAL_IN_MINUTES * 60 * 1000,
+  delayAfter: SPEED_LIMITER.DELAY_AFTER_REQUESTS,
+  delayMs: SPEED_LIMITER.DELAY_MS,
 });
 
 router.post(

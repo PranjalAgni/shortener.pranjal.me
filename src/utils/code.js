@@ -1,9 +1,10 @@
 const { nanoid } = require("nanoid");
 
+const { SHORT_CODE } = require("./constants");
 const Urls = require("../models/urls");
 const cachingInstance = require("../cache/index").getInstance();
 
-const generateShortCode = (length = 5) => {
+const generateShortCode = (length = SHORT_CODE.LENGTH) => {
   return nanoid(length);
 };
 
@@ -36,7 +37,7 @@ const getUrlForGivenCode = async (shortCode) => {
 };
 
 const retryAndGenerateUniqueCode = async () => {
-  let retry = 2;
+  let retry = SHORT_CODE.MAX_RETRY;
   let shortCode = null;
   let gotUniqueCode = false;
   while (retry > 0) {

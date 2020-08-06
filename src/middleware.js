@@ -1,4 +1,5 @@
 const path = require("path");
+const HttpStatus = require("http-status-codes");
 
 const authorization = (req, res, next) => {
   const date = new Date();
@@ -10,19 +11,23 @@ const authorization = (req, res, next) => {
   ) {
     next();
   } else {
-    res.status(401);
-    next(new Error("Unauthorized user"));
+    res.status(HttpStatus.UNAUTHORIZED);
+    next(new Error(HttpStatus.getStatusText(HttpStatus.UNAUTHORIZED)));
   }
 };
 
 const notFound = (req, res, next) => {
   const notFoundPath = path.join(__dirname, "../", "public/404.html");
-  res.status(404).sendFile(notFoundPath);
+  res.status(HttpStatus.NOT_FOUND).sendFile(notFoundPath);
 };
 
 const errorHandler = (error, req, res, next) => {
-  if (error.name === "ValidationError") res.status(422);
-  const statusCode = res.statusCode || 500;
+  if (error.name === "ValidationError") {
+    res.status(HttpStatus.UNPROCESSABLE_ENTITY);
+    error.message = HttpStatus.getStatusText(HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  const statusCode = res.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
   res.status(statusCode);
   res.json({
     message: error.message,

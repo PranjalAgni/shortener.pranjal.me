@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
+const HttpStatus = require("http-status-codes");
 
 const db = require("./utils/db");
 const { notFound, errorHandler, authorization } = require("./middleware");
@@ -25,7 +26,9 @@ app.use(express.static(path.join(__dirname, "../", "public")));
 
 // to serve app.js which is linked in index.html file
 app.get("/app.js", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "../", "public/app.js"));
+  res
+    .status(HttpStatus.OK)
+    .sendFile(path.join(__dirname, "../", "public/app.js"));
 });
 
 app.use(authorization);

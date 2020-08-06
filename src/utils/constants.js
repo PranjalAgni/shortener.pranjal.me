@@ -12,7 +12,7 @@ const RATE_LIMITER = {
 const SPEED_LIMITER = {
   INTERVAL_IN_MINUTES: 15,
   DELAY_AFTER_REQUESTS: 4,
-  DELAY_MS: 2,
+  DELAY_MS: 200,
 };
 
 module.exports = {

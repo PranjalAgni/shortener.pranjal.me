@@ -21,6 +21,7 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (error, req, res, next) => {
+  if (error.name === "ValidationError") res.status(422);
   const statusCode = res.statusCode || 500;
   res.status(statusCode);
   res.json({
@@ -29,8 +30,17 @@ const errorHandler = (error, req, res, next) => {
   });
 };
 
+// DRY error handler, it is a higher order function
+// which takes request handler function as input
+// and then returns a new function which execute our
+// original function and takes care of error handling
+
+const asyncHandler = (fn) => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
+
 module.exports = {
   notFound,
   errorHandler,
   authorization,
+  asyncHandler,
 };

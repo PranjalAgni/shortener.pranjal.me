@@ -2,10 +2,13 @@ const { Router } = require("express");
 
 const { formatResponse } = require("../utils/responseFormatter");
 const { getUrlForGivenCode } = require("../utils/code");
+const { asyncHandler } = require("../middleware");
+
 const router = Router();
 
-router.get("/:id", async (req, res, next) => {
-  try {
+router.get(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
     const codeId = req.params.id;
     const targetUrl = await getUrlForGivenCode(codeId);
     if (!targetUrl) {
@@ -13,9 +16,7 @@ router.get("/:id", async (req, res, next) => {
       return;
     }
     res.redirect(targetUrl);
-  } catch (error) {
-    next(error);
-  }
-});
+  }),
+);
 
 module.exports = router;

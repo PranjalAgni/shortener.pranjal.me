@@ -22,9 +22,10 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (error, req, res, next) => {
+  console.log(JSON.stringify(error, undefined, 3));
   if (error.name === "ValidationError") {
     res.status(HttpStatus.UNPROCESSABLE_ENTITY);
-    error.message = HttpStatus.getStatusText(HttpStatus.UNPROCESSABLE_ENTITY);
+    error.message = error.errors[0];
   }
 
   const statusCode = res.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;

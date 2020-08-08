@@ -18,7 +18,11 @@ const app = express();
 // If we are behind some reverse proxy like Nginx then we can trust this
 app.enable("trust proxy");
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 app.use(morgan("common"));
 app.use(express.json());
 

@@ -1,6 +1,8 @@
 # urls.sh - A 🔗 URL shortener app
 
-![Github Linter Actions](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Linter%20Actions/badge.svg)
+![Github Server Linter Action](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Server%20Linter%20Action/badge.svg)
+
+![Github Client Build Action](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Client%20Build%20Action/badge.svg)
 
 ---
 

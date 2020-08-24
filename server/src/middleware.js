@@ -22,17 +22,19 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (error, req, res, next) => {
-  console.log(JSON.stringify(error, undefined, 3));
   if (error.name === "ValidationError") {
     res.status(HttpStatus.UNPROCESSABLE_ENTITY);
     error.message = error.errors[0];
+  } else if (error.message === HttpStatus.getStatusText(HttpStatus.CONFLICT)) {
+    res.status(HttpStatus.CONFLICT);
   }
 
   const statusCode = res.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
   res.status(statusCode);
   res.json({
-    message: error.message,
-    stack: process.env.NODE_ENV === "production" ? "😁" : error.stack,
+    status: statusCode,
+    result: null,
+    error: process.env.NODE_ENV === "production" ? true : error.stack,
   });
 };
 

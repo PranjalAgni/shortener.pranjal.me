@@ -12,6 +12,8 @@ const app = new Vue({
   },
   methods: {
     async submitFN() {
+      this.error = "";
+      this.shortenedUrl = "";
       const API_URL = `${BASE_API_URL}api/url/create`;
       let requestPayload = {
         targetUrl: this.url,

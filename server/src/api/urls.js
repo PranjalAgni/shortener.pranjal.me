@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const rateLimit = require("express-rate-limit");
 const slowDown = require("express-slow-down");
+const HttpStatus = require("http-status-codes");
 
 const cachingInstance = require("../cache/index").getInstance();
 const Urls = require("../models/urls");
@@ -55,7 +56,7 @@ router.post(
       }
 
       if (!isCodeGenerated || !newCodeStatus.status) {
-        throw new Error("Short code already in use. 🍔");
+        throw new Error(HttpStatus.getStatusText(HttpStatus.CONFLICT));
       }
     }
 
@@ -67,7 +68,7 @@ router.post(
     };
 
     const urlShortened = new Urls(newUrl);
-    const createdEntry = await urlShortened.save();
+    const createdEntry = await urlShortened.toObject();
     cachingInstance.set(shortCode, createdEntry);
 
     formatResponse(res, createdEntry);

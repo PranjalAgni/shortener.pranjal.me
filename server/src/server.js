@@ -3,10 +3,9 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const HttpStatus = require("http-status-codes");
 
 const db = require("./utils/db");
-const { notFound, errorHandler, authorization } = require("./middleware");
+const { notFound, errorHandler } = require("./middleware");
 const urls = require("./api/urls");
 const redirect = require("./api/redirect");
 
@@ -18,24 +17,11 @@ const app = express();
 // If we are behind some reverse proxy like Nginx then we can trust this
 app.enable("trust proxy");
 
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  }),
-);
+app.use(helmet());
 app.use(morgan("common"));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../", "public")));
-
-// to serve app.js which is linked in index.html file
-app.get("/app.js", (req, res) => {
-  res
-    .status(HttpStatus.OK)
-    .sendFile(path.join(__dirname, "../", "public/app.js"));
-});
-
-app.use(authorization);
+app.use(express.static(path.join(__dirname, "../", "dist")));
 
 app.use("/api/url", urls);
 app.use("/", redirect);

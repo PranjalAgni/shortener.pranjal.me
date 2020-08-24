@@ -1,4 +1,4 @@
-name: Github Linter Actions
+name: Github Server Linter Action
 on: [push, pull_request]
 
 jobs:
@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Installation
+        working-directory: ./server
         run: npm install
 
       - name: Linting
+        working-directory: ./server
         run: npm run lint

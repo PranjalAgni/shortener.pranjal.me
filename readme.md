@@ -2,4 +2,29 @@
 
 ![Github Linter Actions](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Linter%20Actions/badge.svg)
 
-![Code scanning - action](https://github.com/PranjalAgni/urls.sh/workflows/Code%20scanning%20-%20action/badge.svg)
+---
+
+## Tech Stack
+
+`Frontend`:
+
+- Vue2 - UI Framework
+- Vuex - State Management
+- CSS - Styling
+
+`Backend`
+
+- Node - Runtime
+- Express - HTTP server
+- MongoDB - Database
+- Nodecache - In memory cache
+- Eslint - Linter for consistent styling
+- Prettier - Code formatter
+
+`Devops`
+
+- Digital Ocean Droplet - VM
+- Nginx - Reverse proxy
+- SSL certificate - Lets encrypt
+- DNS Provider - Namecheap
+- PM2 - Process Manager

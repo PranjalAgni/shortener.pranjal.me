@@ -20,6 +20,8 @@
 - Express - HTTP server
 - MongoDB - Database
 - Nodecache - In memory cache
+- Speed and Rate Limiter - To stop API from getting spammed
+- Dotenv - Storing secrets
 - Eslint - Linter for consistent styling
 - Prettier - Code formatter
 
@@ -27,6 +29,7 @@
 
 - Digital Ocean Droplet - VM
 - Nginx - Reverse proxy
+- MongoDB Atlas - Production MongoDB cluster
 - SSL certificate - Lets encrypt
 - DNS Provider - Namecheap
 - PM2 - Process Manager

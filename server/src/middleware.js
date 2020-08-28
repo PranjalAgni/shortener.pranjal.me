@@ -17,7 +17,7 @@ const authorization = (req, res, next) => {
 };
 
 const notFound = (req, res, next) => {
-  const notFoundPath = path.join(__dirname, "../", "public/404.html");
+  const notFoundPath = path.join(__dirname, "../", "dist/404.html");
   res.status(HttpStatus.NOT_FOUND).sendFile(notFoundPath);
 };
 

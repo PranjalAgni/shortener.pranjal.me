@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #262626;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.logo {
+  max-width: 50%;
+  image-rendering: crisp-edges;
+}
+
+.not-found {
+  font: inherit;
+  font-size: 3rem;
+  color: #ffffff;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+.go-home-link {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #00B0FF;
+}
+
+.arrow {
+  margin-right: 1rem;
+  fill: #00B0FF;
+  transition: transform 0.2s ease-in-out;
+  -webkit-transition: transform 0.2s ease-in-out;
+  -moz-transition: transform 0.2s ease-in-out;
+  -ms-transition: transform 0.2s ease-in-out;
+  -o-transition: transform 0.2s ease-in-out;
+}
+
+.go-home-link:hover .arrow {
+  transform: translateX(10px);
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+}

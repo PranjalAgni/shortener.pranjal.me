@@ -75,4 +75,14 @@ router.post(
   }),
 );
 
+router.post(
+  "/search",
+  asyncHandler(async (req, res) => {
+    const { shortId } = req.body;
+    const isCodePresent = await checkIfCodeExists(shortId);
+    formatResponse(res, {
+      present: isCodePresent,
+    });
+  }),
+);
 module.exports = router;

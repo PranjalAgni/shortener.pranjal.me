@@ -68,6 +68,7 @@ router.post(
     };
 
     const urlShortened = new Urls(newUrl);
+    await urlShortened.save();
     const createdEntry = await urlShortened.toObject();
     cachingInstance.set(shortCode, createdEntry);
 

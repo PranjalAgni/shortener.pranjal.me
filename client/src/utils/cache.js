@@ -1,6 +1,7 @@
 const shortIdCache = new Map();
 
 export const setValue = (key, value) => {
+  if (!key.length) return null;
   shortIdCache.set(key, value);
 };
 

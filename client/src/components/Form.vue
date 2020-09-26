@@ -88,11 +88,9 @@ export default {
     code: async function(currentCode) {
       this.$v.code.$touch();
 
-      if (currentCode.length) {
-        const isCodePresent =
-          getValue(currentCode) ?? (await checkCodeValid(currentCode));
-        this.codeExists = isCodePresent;
-      }
+      const isCodePresent =
+        getValue(currentCode) ?? (await checkCodeValid(currentCode));
+      this.codeExists = isCodePresent;
     },
   },
   methods: {
@@ -100,7 +98,7 @@ export default {
     handleSubmit(event) {
       event.preventDefault();
       this.$v.$touch();
-      console.log(this.$v.$invalid);
+      console.log(this.codeExists);
       if (this.$v.$invalid || this.codeExists) return;
       const payload = {
         url: this.url,

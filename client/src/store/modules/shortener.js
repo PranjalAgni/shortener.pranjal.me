@@ -6,7 +6,7 @@ import {
   SHORTEN_URL_FAILED,
   INVALID_REQUEST_BODY,
   DUPLICATE_KEY,
-} from '../../constants';
+} from '../../utils/constants';
 
 const state = {
   shortenedUrl: null,

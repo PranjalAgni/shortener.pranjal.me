@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
 };
 </script>
 
@@ -18,7 +18,8 @@ header {
 }
 
 .logo {
-  max-width: 50%;
+  max-width: 40%;
+  max-height: 40%;
   image-rendering: crisp-edges;
 }
 

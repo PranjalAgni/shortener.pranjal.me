@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style>
-@import '~@sweetalert2/theme-dark/dark.css';
+@import '~@sweetalert2/theme-dark/dark.min.css';
 
 .result-holder {
   display: flex;
@@ -85,7 +85,7 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .title-class {
-    font-size: 18px;
+    font-size: 18px !important;
   }
 }
 </style>

@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const helmet = require("helmet");
 
 const db = require("./utils/db");
@@ -18,6 +19,7 @@ const app = express();
 app.enable("trust proxy");
 
 app.use(helmet());
+app.use(cors());
 app.use(morgan("common"));
 app.use(express.json());
 

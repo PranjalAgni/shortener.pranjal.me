@@ -4,38 +4,38 @@
       <p>{{ errors }}</p>
     </div>
 
-    <form class="form" autocomplete="off">
+    <v-form class="form" autocomplete="off">
       <input
         autocomplete="off"
         name="hidden"
         type="text"
-        style="display: none;"
+        style="display: none"
       />
-      <input
-        type="text"
+      <v-text-field
         v-model="url"
-        class="input"
-        name="url"
-        placeholder="enter a url"
-      />
-      <input
-        type="text"
+        label="Url"
+        :error-messages="urlErrors"
+        required
+        @change="$v.url.$touch()"
+        @blur="$v.url.$touch()"
+      ></v-text-field>
+      <v-text-field
         v-model="code"
-        class="input"
-        name="code"
-        placeholder="enter a code"
-      />
-      <button type="submit" class="create" v-on:click="handleSubmit">
-        Create
-      </button>
-    </form>
+        label="Short Code (optional)"
+        :error-messages="codeErrors"
+        @change="$v.code.$touch()"
+        @blur="$v.code.$touch()"
+      ></v-text-field>
+
+      <v-btn color="primary" class="create" @click="handleSubmit">Create</v-btn>
+    </v-form>
     <div class="vld-parent">
       <Loading
         color="#00B0FE"
         :active.sync="loading"
-        is-full-page="true"
-        height="95"
-        width="195"
+        :is-full-page="true"
+        :height="95"
+        :width="195"
       ></Loading>
     </div>
   </div>
@@ -43,26 +43,65 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import { validationMixin } from 'vuelidate';
+import { required, url, minLength } from 'vuelidate/lib/validators';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+
+import { checkCodeValid } from '../api';
+import { getValue } from '../utils/cache';
 
 export default {
   name: 'Form',
   components: {
     Loading,
   },
+  mixins: [validationMixin],
+  validations: {
+    url: { required, url },
+    code: { minLength: minLength(3) },
+  },
   data: () => ({
     url: '',
     code: '',
+    codeExists: false,
   }),
   computed: {
     ...mapGetters(['errors', 'loading']),
+    urlErrors() {
+      const errors = [];
+      if (!this.$v.url.$dirty) return errors;
+      !this.$v.url.required && errors.push('url cannot be empty');
+      !this.$v.url.url && errors.push('pass a valid url');
+      return errors;
+    },
+    codeErrors() {
+      const errors = [];
+      if (!this.$v.code.$dirty || !this.code.length) return errors;
+      this.codeExists && errors.push('code is already in use');
+      !this.$v.code.minLength &&
+        errors.push('code should be atleast 3 letters');
+      return errors;
+    },
   },
+  watch: {
+    code: async function(currentCode) {
+      this.$v.code.$touch();
 
+      if (currentCode.length) {
+        const isCodePresent =
+          getValue(currentCode) ?? (await checkCodeValid(currentCode));
+        this.codeExists = isCodePresent;
+      }
+    },
+  },
   methods: {
     ...mapActions(['shortenURL']),
     handleSubmit(event) {
       event.preventDefault();
+      this.$v.$touch();
+      console.log(this.$v.$invalid);
+      if (this.$v.$invalid || this.codeExists) return;
       const payload = {
         url: this.url,
         code: this.code,
@@ -83,6 +122,9 @@ export default {
   flex-direction: column;
 }
 
+.white {
+  border-bottom: none;
+}
 .input,
 .create {
   margin: 1rem 0;

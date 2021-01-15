@@ -49,7 +49,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 import { checkCodeValid } from '../api';
-import { getValue } from '../utils/cache';
+import { getValue, setValue } from '../utils/cache';
 
 export default {
   name: 'Form',
@@ -87,9 +87,13 @@ export default {
   watch: {
     code: async function(currentCode) {
       this.$v.code.$touch();
-
-      const isCodePresent =
-        getValue(currentCode) ?? (await checkCodeValid(currentCode));
+      let isCodePresent = getValue(currentCode);
+      if (!isCodePresent) {
+        isCodePresent = await checkCodeValid(currentCode);
+        setValue(currentCode, isCodePresent);
+      }
+      
+      console.log("Code in cache: ", getValue(currentCode));
       this.codeExists = isCodePresent;
     },
   },
@@ -98,7 +102,6 @@ export default {
     handleSubmit(event) {
       event.preventDefault();
       this.$v.$touch();
-      console.log(this.codeExists);
       if (this.$v.$invalid || this.codeExists) return;
       const payload = {
         url: this.url,

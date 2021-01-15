@@ -1,5 +1,4 @@
 import { BASE_API_URL } from './utils/constants';
-import { setValue } from './utils/cache';
 
 const makeAPICall = async (API_URL, payload, method = 'POST') => {
   const headers = {
@@ -42,7 +41,6 @@ export const checkCodeValid = async (payload) => {
     };
     const response = await makeAPICall(API_URL, requestPayload);
     const data = await response.json();
-    setValue(payload, true);
     return data?.result?.present;
   } catch (error) {
     console.error(error);

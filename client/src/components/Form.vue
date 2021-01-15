@@ -108,6 +108,9 @@ export default {
         code: this.code,
       };
       this.shortenURL(payload);
+      this.$v.url.$reset();
+      this.url = '';
+      this.code = ''; 
     },
   },
 };

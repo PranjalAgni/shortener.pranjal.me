@@ -6,6 +6,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const db = require("./utils/db");
+const constants = require("./utils/constants")
 const { notFound, errorHandler } = require("./middleware");
 const urls = require("./api/urls");
 const redirect = require("./api/redirect");
@@ -31,7 +32,6 @@ app.use("/", redirect);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(constants.PORT, () => {
   console.log(`Server running at port 3000 in ${process.env.NODE_ENV} mode`);
 });

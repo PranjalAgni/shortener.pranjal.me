@@ -15,8 +15,11 @@ const SPEED_LIMITER = {
   DELAY_MS: 200,
 };
 
+const PORT = 3000;
+
 module.exports = {
   SHORT_CODE,
   RATE_LIMITER,
   SPEED_LIMITER,
+  PORT,
 };

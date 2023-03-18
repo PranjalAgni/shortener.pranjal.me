@@ -31,6 +31,7 @@ app.use("/", redirect);
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(3000, () => {
+const PORT = 3000;
+app.listen(PORT, () => {
   console.log(`Server running at port 3000 in ${process.env.NODE_ENV} mode`);
 });

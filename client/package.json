@@ -13,7 +13,7 @@
     "core-js": "3.6.5",
     "fs-extra": "9.0.1",
     "rimraf": "3.0.2",
-    "vue": "2.6.12",
+    "vue": "2.7.16",
     "vue-loading-overlay": "3.3.3",
     "vue-sweetalert2": "3.0.8",
     "vuelidate": "0.7.5",
@@ -30,7 +30,7 @@
     "sass": "1.26.10",
     "sass-loader": "8.0.2",
     "vue-cli-plugin-vuetify": "2.0.7",
-    "vue-template-compiler": "2.6.12",
+    "vue-template-compiler": "2.7.16",
     "vuetify-loader": "1.6.0"
   },
   "eslintConfig": {

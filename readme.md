@@ -1,5 +1,7 @@
 # urls.sh - A 🔗 URL shortener app
 
+This is one of the project which I made as an noob got inspired from CJ and built it. Loved his live stream and fan since then. This one taught me a lot too (days when we manually used to write code 🥹)
+
 ![Github Server Linter Action](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Server%20Linter%20Action/badge.svg)
 
 ![Github Client Build Action](https://github.com/PranjalAgni/urls.sh/workflows/Github%20Client%20Build%20Action/badge.svg)
